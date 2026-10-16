@@ -209,6 +209,9 @@ class SmartFarmServerCallbacks : public BLEServerCallbacks {
   void onConnect(BLEServer* server) override {
     bleClientConnected = true;
     Serial.println("BLE client connected.");
+    // Force the ESP32 to push the current state and values to the new connection
+    lastNotifiedValues = "";
+    lastNotifiedState = (FarmState)99; 
   }
 
   void onDisconnect(BLEServer* server) override {
